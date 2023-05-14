@@ -9,6 +9,7 @@ function usePrevious(value) {
   return ref.current;
 }
 
+// 它直接在函数这里导出了 和其它组件还不一致 有什么猫腻吗？
 export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState('');
@@ -31,7 +32,7 @@ export default function Todo(props) {
     setNewName("");
     setEditing(false);
   }
-
+  //////////////////////
   const editingTemplate = (
     <form className="stack-small" onSubmit={handleSubmit}>
       <div className="form-group">
@@ -60,11 +61,13 @@ export default function Todo(props) {
         <button type="submit" className="btn btn__primary todo-edit">
           保存
           <span className="visually-hidden">new name for {props.name}</span>
+          {/*不理解为什么要做个隐藏的文本*/}
         </button>
       </div>
     </form>
   );
-
+  //////////////////////
+  //////////////////////
   const viewTemplate = (
     <div className="stack-small">
       <div className="c-cb">
@@ -86,6 +89,7 @@ export default function Todo(props) {
           ref={editButtonRef}
           >
             编辑 <span className="visually-hidden">{props.name}</span>
+          {/*不理解为什么要做个隐藏的文本 感觉没有用啊*/}
           </button>
           <button
             type="button"
@@ -97,6 +101,7 @@ export default function Todo(props) {
         </div>
     </div>
   );
+  //////////////////////
 
 
   useEffect(() => {
@@ -108,6 +113,6 @@ export default function Todo(props) {
     }
   }, [wasEditing, isEditing]);
 
-
+  // 设置显示是 编辑 还是 查看
   return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 }
