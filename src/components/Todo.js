@@ -36,7 +36,7 @@ export default function Todo(props) {
     <form className="stack-small" onSubmit={handleSubmit}>
       <div className="form-group">
         <label className="todo-label" htmlFor={props.id}>
-          New name for {props.name}
+          修改 {props.name} 的内容
         </label>
         <input
           id={props.id}
@@ -54,11 +54,11 @@ export default function Todo(props) {
           className="btn todo-cancel"
           onClick={() => setEditing(false)}
         >
-          Cancel
+          取消
           <span className="visually-hidden">renaming {props.name}</span>
         </button>
         <button type="submit" className="btn btn__primary todo-edit">
-          Save
+          保存
           <span className="visually-hidden">new name for {props.name}</span>
         </button>
       </div>
@@ -85,14 +85,14 @@ export default function Todo(props) {
           onClick={() => setEditing(true)}
           ref={editButtonRef}
           >
-            Edit <span className="visually-hidden">{props.name}</span>
+            编辑 <span className="visually-hidden">{props.name}</span>
           </button>
           <button
             type="button"
             className="btn btn__danger"
             onClick={() => props.deleteTask(props.id)}
           >
-            Delete <span className="visually-hidden">{props.name}</span>
+            删除 <span className="visually-hidden">{props.name}</span>
           </button>
         </div>
     </div>
